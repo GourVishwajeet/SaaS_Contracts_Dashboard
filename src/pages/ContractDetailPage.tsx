@@ -39,11 +39,11 @@ export default function ContractDetailPage() {
   }
 
   return (
-    <div className="flex min-h-screen w-full overflow-x-hidden">
+    <div className="flex min-h-screen w-full overflow-x-hidden ">
       <Sidebar />
       <div className="flex-1 flex flex-col ">
         <Topbar/>
-        <main className="p-4 sm:p-6">
+        <main className="p-4 sm:p-6 mt-20">
           <button className="text-sky-600 mb-4 text-base sm:text-lg" onClick={() => navigate(-1)}>← Back</button>
           <div className="bg-white p-4 sm:p-6 rounded shadow">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
