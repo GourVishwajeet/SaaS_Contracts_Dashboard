@@ -12,6 +12,7 @@ export default function useFetch<T = unknown>(url: string, deps: any[] = []): Us
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
 
+    // Fetch data 
     useEffect(() => {
         let isMounted = true;
         setLoading(true);

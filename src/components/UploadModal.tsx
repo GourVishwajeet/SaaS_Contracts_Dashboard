@@ -21,6 +21,7 @@ function FileRow({ file }: { file: FileItem }) {
 export default function UploadModal({ onClose }: { onClose: () => void }) {
   const [files, setFiles] = useState<FileItem[]>([])
 
+  // Handle file selection
   function handleFiles(selected: FileList | null) {
     if (!selected) return
     const arr = Array.from(selected).map((f) => ({ name: f.name, status: 'Uploading', progress: 0 }))
@@ -28,6 +29,7 @@ export default function UploadModal({ onClose }: { onClose: () => void }) {
     arr.forEach((f) => simulateUpload(f))
   }
 
+  // Simulate file upload with random progress
   function simulateUpload(file: FileItem) {
     let progress = 0
     const id = setInterval(() => {

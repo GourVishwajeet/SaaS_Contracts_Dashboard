@@ -10,6 +10,7 @@ import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
 
 
+// A wrapper for <Route> that redirects to the login
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const auth = useAuth();
   if (!auth || !auth.user) return <Navigate to="/login" replace />;

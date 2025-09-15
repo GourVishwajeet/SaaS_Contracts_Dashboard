@@ -24,7 +24,7 @@ React + Tailwind SPA implementing the UI/UX assignment: contracts list, filters,
 
 
 ## Deployment
-This app can be deployed to Vercel or Netlify. Build output is in `dist/`.
+This app is deployed to Vercel. Build output is in `dist/`.
 
 
 ## Assumptions
