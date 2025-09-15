@@ -52,47 +52,67 @@ export default function ContractTable() {
   return (
     <div className="bg-white rounded shadow p-4">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
           <input
-            className="border rounded p-2"
+            className="border rounded p-2 w-full sm:w-auto"
             placeholder="Search name or parties"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="border rounded p-2">
+          <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="border rounded p-2 w-full sm:w-auto">
             {STATUS_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
           </select>
-          <select value={riskFilter} onChange={e => setRiskFilter(e.target.value)} className="border rounded p-2">
+          <select value={riskFilter} onChange={e => setRiskFilter(e.target.value)} className="border rounded p-2 w-full sm:w-auto">
             {RISK_OPTIONS.map(r => <option key={r} value={r}>{r}</option>)}
           </select>
         </div>
         <div className="text-sm text-slate-500">{total} result(s)</div>
       </div>
 
-      <table className="w-full text-left">
-        <thead>
-          <tr className="text-sm text-slate-600 border-b">
-            <th className="py-2">Contract Name</th>
-            <th className="py-2">Parties</th>
-            <th className="py-2">Expiry</th>
-            <th className="py-2">Status</th>
-            <th className="py-2">Risk</th>
-          </tr>
-        </thead>
-        <tbody>
-          {pageItems.map(c => (
-            <tr key={c.id} className="border-b hover:bg-gray-50">
-              <td className="py-3">
-                <Link to={`/contracts/${c.id}`} className="text-sky-600">{c.name}</Link>
-              </td>
-              <td className="py-3">{c.parties}</td>
-              <td className="py-3">{c.expiry}</td>
-              <td className="py-3">{c.status}</td>
-              <td className="py-3">{c.risk}</td>
+      {/* Responsive Table: Table on md+, Cards on mobile */}
+      <div className="hidden md:block w-full overflow-x-auto">
+        <table className="w-full min-w-[600px] text-left">
+          <thead>
+            <tr className="text-xs text-slate-600 border-b md:text-sm ">
+              <th className="py-2">Contract Name</th>
+              <th className="py-2">Parties</th>
+              <th className="py-2">Expiry</th>
+              <th className="py-2">Status</th>
+              <th className="py-2">Risk</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {pageItems.map(c => (
+              <tr key={c.id} className="border-b hover:bg-gray-50 md:text-sm text-xs">
+                <td className="py-3">
+                  <Link to={`/contracts/${c.id}`} className="text-sky-600">{c.name}</Link>
+                </td>
+                <td className="py-3">{c.parties}</td>
+                <td className="py-3">{c.expiry}</td>
+                <td className="py-3">{c.status}</td>
+                <td className="py-3">{c.risk}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Mobile Card View */}
+      <div className="md:hidden space-y-4">
+        {pageItems.map(c => (
+          <div key={c.id} className="border rounded p-3 shadow-sm">
+            <div className="font-semibold text-sky-700">
+              <Link to={`/contracts/${c.id}`}>{c.name}</Link>
+            </div>
+            <div className="text-xs text-slate-500 mb-1">{c.parties}</div>
+            <div className="flex flex-wrap gap-2 text-xs">
+              <span className="bg-slate-100 lg:px-2 py-1 rounded">Expiry: <span className="font-medium">{c.expiry}</span></span>
+              <span className="bg-slate-100 lg:px-2 py-1 rounded">Status: <span className="font-medium">{c.status}</span></span>
+              <span className="bg-slate-100 lg:px-2 py-1 rounded">Risk: <span className="font-medium">{c.risk}</span></span>
+            </div>
+          </div>
+        ))}
+      </div>
 
       <div className="mt-4">
         <Pagination page={page} setPage={setPage} pages={pages} />

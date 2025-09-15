@@ -9,13 +9,15 @@ interface AuthContextType {
   user: User | null
   login: (username: string, password: string) => Promise<boolean>
   logout: () => void
+  open?: boolean
+  setOpen?: (v: boolean) => void
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
-  
+  const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true)
 
   // to get form localStorage if already logged in
@@ -49,7 +51,7 @@ useEffect(() => {
 }, [])
 
   return (
-   <AuthContext.Provider value={{ user, login, logout }}>
+   <AuthContext.Provider value={{ user, login, logout, open, setOpen }}>
     {!loading && children}
   </AuthContext.Provider>
   )

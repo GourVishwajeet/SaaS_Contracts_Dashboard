@@ -46,7 +46,7 @@ export default function Login() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="mt-1 block w-full rounded-md border border-gray-200 shadow-sm p-2"
-              placeholder="your.username"
+              placeholder="username"
               required
             />
           </label>
