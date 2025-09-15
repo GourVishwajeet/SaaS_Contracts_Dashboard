@@ -45,18 +45,18 @@ export default function Login() {
             <input
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-200 shadow-sm p-2"
+              className="mt-1 block w-full rounded-md border border-gray-200 shadow-sm p-2"
               placeholder="your.username"
               required
             />
           </label>
           <label className="block mb-4">
-            <span className="text-sm text-slate-600">Password</span>
+            <span className="text-sm  text-slate-600">Password</span>
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
-              className="mt-1 block w-full rounded-md border-gray-200 shadow-sm p-2"
+              className="mt-1 block w-full rounded-md border border-slate-200 shadow-sm p-2"
               placeholder="test123"
               required
             />
